@@ -13,7 +13,7 @@
 #include <WiFiUdp.h>
 #elif defined(BOARD_WITH_ESP_AT)
 #include <WiFiEspAT.h>
-#elid defined(ARDUINO_UNOR4_WIFI)
+#elif defined(ARDUINO_UNOR4_WIFI)
 #include <WiFiS3.h>
 #endif
 
