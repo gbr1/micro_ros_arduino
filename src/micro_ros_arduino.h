@@ -56,11 +56,11 @@ static inline void set_microros_transports(){
 #include <NativeEthernet.h>
 #endif
 
-#if defined(TARGET_PORTENTA_H7_M7)
+#if defined(TARGET_PORTENTA_H7_M7) || defined(ARDUINO_OPTA)
 #include <PortentaEthernet.h>
 #endif
 
-#if defined(TARGET_STM32F4) || defined(ARDUINO_TEENSY41)  || defined(TARGET_PORTENTA_H7_M7)
+#if defined(TARGET_STM32F4) || defined(ARDUINO_TEENSY41)  || defined(TARGET_PORTENTA_H7_M7) || defined(ARDUINO_OPTA)
 extern "C" bool arduino_native_ethernet_udp_transport_open(struct uxrCustomTransport * transport);
 extern "C" bool arduino_native_ethernet_udp_transport_close(struct uxrCustomTransport * transport);
 extern "C" size_t arduino_native_ethernet_udp_transport_write(struct uxrCustomTransport* transport, const uint8_t * buf, size_t len, uint8_t * err);
@@ -116,7 +116,7 @@ extern "C" bool arduino_wifi_transport_open(struct uxrCustomTransport * transpor
 extern "C" bool arduino_wifi_transport_close(struct uxrCustomTransport * transport);
 extern "C" size_t arduino_wifi_transport_write(struct uxrCustomTransport* transport, const uint8_t * buf, size_t len, uint8_t * err);
 extern "C" size_t arduino_wifi_transport_read(struct uxrCustomTransport* transport, uint8_t* buf, size_t len, int timeout, uint8_t* err);
-#ifndef TARGET_PORTENTA_H7_M7
+#if !defined(TARGET_PORTENTA_H7_M7) && !defined(ARDUINO_OPTA)
 struct micro_ros_agent_locator {
 	IPAddress address;
 	int port;
